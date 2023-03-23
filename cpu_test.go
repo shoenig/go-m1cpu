@@ -28,6 +28,16 @@ func Test_ECoreGHz(t *testing.T) {
 	must.Greater(t, 1, ghz)
 }
 
+func Test_PCoreCount(t *testing.T) {
+	n := PCoreCount()
+	must.Positive(t, n)
+}
+
+func Test_ECoreCount(t *testing.T) {
+	n := ECoreCount()
+	must.Positive(t, n)
+}
+
 func Test_Show(t *testing.T) {
 	t.Log("pCore Hz", PCoreHz())
 	t.Log("eCore Hz", ECoreHz())
@@ -35,4 +45,10 @@ func Test_Show(t *testing.T) {
 	t.Log("eCore GHz", ECoreGHz())
 	t.Log("pCore count", PCoreCount())
 	t.Log("eCoreCount", ECoreCount())
+
+	pL1Inst, pL1Data, pL2 := PCoreCache()
+	t.Log("pCore Caches", pL1Inst, pL1Data, pL2)
+
+	eL1Inst, eL1Data, eL2 := ECoreCache()
+	t.Log("eCore Caches", eL1Inst, eL1Data, eL2)
 }
