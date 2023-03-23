@@ -18,10 +18,10 @@ package m1cpu
 // UInt8 buf[size];
 // CFDataGetBytes(cfData, CFRangeMake(0, size), buf);
 //
-// UInt8 b1 = buf[size-7];
+// UInt8 b1 = buf[size-5];
 // UInt8 b2 = buf[size-6];
-// UInt8 b3 = buf[size-5];
-// UInt8 b4 = buf[size-4];
+// UInt8 b3 = buf[size-7];
+// UInt8 b4 = buf[size-8];
 //
 // UInt64 pCoreHz = 0x00000000FFFFFFFF & ((b1<<24) | (b2 << 16) | (b3 << 8) | (b4));
 // return pCoreHz;
