@@ -9,7 +9,7 @@ jobs:
         with:
           version-file: go.mod
       - name: GolangCI-Lint
-      - uses: golangci/golangci-lint-action@v3
+        uses: golangci/golangci-lint-action@v3
         with:
           version: v1.50
           skip-cache: true
