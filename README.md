@@ -20,14 +20,19 @@ go get github.com/shoenig/go-m1cpu@latest
 package main
 
 import (
-    "fmt"
+	"fmt"
 
-    "github.com/shoenig/go-m1cpu"
+	"github.com/shoenig/go-m1cpu"
 )
 
 func main() {
-    fmt.Println("pCore", m1cpu.PCoreGHz())
-    fmt.Println("eCore", m1cpu.ECoreGHz())
+	fmt.Println("Apple Silicon:", m1cpu.IsAppleSilicon())
+
+	fmt.Println("pCore GHz", m1cpu.PCoreGHz())
+	fmt.Println("eCore GHz", m1cpu.ECoreGHz())
+
+	fmt.Println("pCore Hz", m1cpu.PCoreHz())
+	fmt.Println("eCore Hz", m1cpu.ECoreHz())
 }
 ```
 
