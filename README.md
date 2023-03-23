@@ -26,7 +26,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Apple Silicon:", m1cpu.IsAppleSilicon())
+	fmt.Println("Apple Silicon", m1cpu.IsAppleSilicon())
 
 	fmt.Println("pCore GHz", m1cpu.PCoreGHz())
 	fmt.Println("eCore GHz", m1cpu.ECoreGHz())
