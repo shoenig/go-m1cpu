@@ -13,6 +13,12 @@ package m1cpu
 // UInt64 global_eCoreHz;
 // int global_pCoreCount;
 // int global_eCoreCount;
+// int global_pCoreL1InstCacheSize;
+// int global_eCoreL1InstCacheSize;
+// int global_pCoreL1DataCacheSize;
+// int global_eCoreL1DataCacheSize;
+// int global_pCoreL2CacheSize;
+// int global_eCoreL2CacheSize;
 //
 // UInt64 getFrequency(CFTypeRef typeRef) {
 // CFDataRef cfData = typeRef;
@@ -40,6 +46,12 @@ package m1cpu
 // void initialize() {
 //   global_pCoreCount = sysctl_int("hw.perflevel0.physicalcpu");
 //   global_eCoreCount = sysctl_int("hw.perflevel1.physicalcpu");
+//   global_pCoreL1InstCacheSize = sysctl_int("hw.perflevel0.l1icachesize");
+//   global_eCoreL1InstCacheSize = sysctl_int("hw.perflevel1.l1icachesize");
+//   global_pCoreL1DataCacheSize = sysctl_int("hw.perflevel0.l1dcachesize");
+//   global_eCoreL1DataCacheSize = sysctl_int("hw.perflevel1.l1dcachesize");
+//   global_pCoreL2CacheSize = sysctl_int("hw.perflevel0.l2cachesize");
+//   global_eCoreL2CacheSize = sysctl_int("hw.perflevel1.l2cachesize");
 //
 //   CFMutableDictionaryRef matching = IOServiceMatching("AppleARMIODevice");
 //   io_iterator_t  iter;
@@ -89,6 +101,30 @@ package m1cpu
 // int eCoreCount() {
 //   return global_eCoreCount;
 // }
+//
+// int pCoreL1InstCacheSize() {
+//   return global_pCoreL1InstCacheSize;
+// }
+//
+// int pCoreL1DataCacheSize() {
+//   return global_pCoreL1DataCacheSize;
+// }
+//
+// int pCoreL2CacheSize() {
+//   return global_pCoreL2CacheSize;
+// }
+//
+// int eCoreL1InstCacheSize() {
+//   return global_eCoreL1InstCacheSize;
+// }
+//
+// int eCoreL1DataCacheSize() {
+//   return global_eCoreL1DataCacheSize;
+// }
+//
+// int eCoreL2CacheSize() {
+//   return global_eCoreL2CacheSize;
+// }
 import "C"
 
 func init() {
@@ -128,4 +164,28 @@ func PCoreCount() int {
 // ECoreCount returns the number of physical E (efficiency) cores.
 func ECoreCount() int {
 	return int(C.eCoreCount())
+}
+
+// PCoreCacheSize returns the sizes of the P (performance) core cache sizes
+// in the order of
+//
+// - L1 instruction cache
+// - L1 data cache
+// - L2 cache
+func PCoreCache() (int, int, int) {
+	return int(C.pCoreL1InstCacheSize()),
+		int(C.pCoreL1DataCacheSize()),
+		int(C.pCoreL2CacheSize())
+}
+
+// ECoreCacheSize returns the sizes of the E (efficiency) core cache sizes
+// in the order of
+//
+// - L1 instruction cache
+// - L1 data cache
+// - L2 cache
+func ECoreCache() (int, int, int) {
+	return int(C.eCoreL1InstCacheSize()),
+		int(C.eCoreL1DataCacheSize()),
+		int(C.eCoreL2CacheSize())
 }
