@@ -39,6 +39,7 @@ func Test_ECoreCount(t *testing.T) {
 }
 
 func Test_Show(t *testing.T) {
+	t.Log("model name", ModelName())
 	t.Log("pCore Hz", PCoreHz())
 	t.Log("eCore Hz", ECoreHz())
 	t.Log("pCore GHz", PCoreGHz())

@@ -19,6 +19,7 @@ package m1cpu
 // int global_eCoreL1DataCacheSize;
 // int global_pCoreL2CacheSize;
 // int global_eCoreL2CacheSize;
+// char global_brand[32];
 //
 // UInt64 getFrequency(CFTypeRef typeRef) {
 // CFDataRef cfData = typeRef;
@@ -43,6 +44,11 @@ package m1cpu
 //  return value;
 // }
 //
+// void sysctl_string(const char * name, char * dest) {
+//   size_t size = 32;
+//   sysctlbyname(name, dest, &size, NULL, 0);
+// }
+//
 // void initialize() {
 //   global_pCoreCount = sysctl_int("hw.perflevel0.physicalcpu");
 //   global_eCoreCount = sysctl_int("hw.perflevel1.physicalcpu");
@@ -52,6 +58,7 @@ package m1cpu
 //   global_eCoreL1DataCacheSize = sysctl_int("hw.perflevel1.l1dcachesize");
 //   global_pCoreL2CacheSize = sysctl_int("hw.perflevel0.l2cachesize");
 //   global_eCoreL2CacheSize = sysctl_int("hw.perflevel1.l2cachesize");
+//   sysctl_string("machdep.cpu.brand_string", global_brand);
 //
 //   CFMutableDictionaryRef matching = IOServiceMatching("AppleARMIODevice");
 //   io_iterator_t  iter;
@@ -125,6 +132,10 @@ package m1cpu
 // int eCoreL2CacheSize() {
 //   return global_eCoreL2CacheSize;
 // }
+//
+// char * modelName() {
+//   return global_brand;
+// }
 import "C"
 
 func init() {
@@ -188,4 +199,8 @@ func ECoreCache() (int, int, int) {
 	return int(C.eCoreL1InstCacheSize()),
 		int(C.eCoreL1DataCacheSize()),
 		int(C.eCoreL2CacheSize())
+}
+
+func ModelName() string {
+	return C.GoString(C.modelName())
 }
