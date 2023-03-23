@@ -27,6 +27,11 @@ func main() {
 }
 ```
 
+# CGO
+
+This package requires the use of CGO. Extracting the CPU properties is done via
+Apple's IOKit framework, which is accessible only through system C libraries.
+
 # License
 
 Open source under the [MPL](LICENSE)
