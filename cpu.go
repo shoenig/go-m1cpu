@@ -5,11 +5,14 @@ package m1cpu
 // #cgo LDFLAGS: -framework CoreFoundation -framework IOKit
 // #include <CoreFoundation/CoreFoundation.h>
 // #include <IOKit/IOKitLib.h>
+// #include <sys/sysctl.h>
 //
 // #define HzToGHz(hz) ((hz) / 1000000000.0)
 //
 // UInt64 global_pCoreHz;
 // UInt64 global_eCoreHz;
+// int global_pCoreCount;
+// int global_eCoreCount;
 //
 // UInt64 getFrequency(CFTypeRef typeRef) {
 // CFDataRef cfData = typeRef;
@@ -27,7 +30,17 @@ package m1cpu
 // return pCoreHz;
 // }
 //
+// int sysctl_int(const char * name) {
+//  int value = -1;
+//  size_t size = 8;
+//  sysctlbyname(name, &value, &size, NULL, 0);
+//  return value;
+// }
+//
 // void initialize() {
+//   global_pCoreCount = sysctl_int("hw.perflevel0.physicalcpu");
+//   global_eCoreCount = sysctl_int("hw.perflevel1.physicalcpu");
+//
 //   CFMutableDictionaryRef matching = IOServiceMatching("AppleARMIODevice");
 //   io_iterator_t  iter;
 //   IOServiceGetMatchingServices(kIOMainPortDefault, matching, &iter);
@@ -68,6 +81,14 @@ package m1cpu
 // Float64 pCoreGHz() {
 //   return HzToGHz(global_pCoreHz);
 // }
+//
+// int pCoreCount() {
+//   return global_pCoreCount;
+// }
+//
+// int eCoreCount() {
+//   return global_eCoreCount;
+// }
 import "C"
 
 func init() {
@@ -97,4 +118,14 @@ func PCoreGHz() float64 {
 // ECoreGHz returns the max frequency in Gigahertz of the E-Core of an Apple Silicon CPU.
 func ECoreGHz() float64 {
 	return float64(C.eCoreGHz())
+}
+
+// PCoreCount returns the number of physical P (performance) cores.
+func PCoreCount() int {
+	return int(C.pCoreCount())
+}
+
+// ECoreCount returns the number of physical E (efficiency) cores.
+func ECoreCount() int {
+	return int(C.eCoreCount())
 }

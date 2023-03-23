@@ -33,4 +33,6 @@ func Test_Show(t *testing.T) {
 	t.Log("eCore Hz", ECoreHz())
 	t.Log("pCore GHz", PCoreGHz())
 	t.Log("eCore GHz", ECoreGHz())
+	t.Log("pCore count", PCoreCount())
+	t.Log("eCoreCount", ECoreCount())
 }

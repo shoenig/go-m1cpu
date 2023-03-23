@@ -7,22 +7,32 @@ func IsAppleSilicon() bool {
 	return false
 }
 
-// PCoreHZ returns the max frequency in Hertz of the P-Core of an Apple Silicon CPU.
+// PCoreHZ requires darwin/arm64
 func PCoreHz() uint64 {
 	panic("m1cpu: not a darwin/arm64 system")
 }
 
-// ECoreHZ returns the max frequency in Hertz of the E-Core of an Apple Silicon CPU.
+// ECoreHZ requires darwin/arm64
 func ECoreHz() uint64 {
 	panic("m1cpu: not a darwin/arm64 system")
 }
 
-// PCoreGHz returns the max frequency in Gigahertz of the P-Core of an Apple Silicon CPU.
+// PCoreGHz requires darwin/arm64
 func PCoreGHz() float64 {
 	panic("m1cpu: not a darwin/arm64 system")
 }
 
-// ECoreGHz returns the max frequency in Gigahertz of the E-Core of an Apple Silicon CPU.
+// ECoreGHz requires darwin/arm64
 func ECoreGHz() float64 {
+	panic("m1cpu: not a darwin/arm64 system")
+}
+
+// PCoreCount requires darwin/arm64
+func PCoreCount() int {
+	panic("m1cpu: not a darwin/arm64 system")
+}
+
+// ECoreCount requires darwin/arm64
+func ECoreCount() int {
 	panic("m1cpu: not a darwin/arm64 system")
 }
