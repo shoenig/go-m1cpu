@@ -64,14 +64,15 @@ package m1cpu
 //   io_iterator_t  iter;
 //   IOServiceGetMatchingServices(kIOMainPortDefault, matching, &iter);
 //
+//   const size_t bufsize = 512;
 //   io_object_t obj;
 //   while ((obj = IOIteratorNext(iter))) {
-//     char class[512];
+//     char class[bufsize];
 //     IOObjectGetClass(obj, class);
-//     char name[512];
+//     char name[bufsize];
 //     IORegistryEntryGetName(obj, name);
 //
-//     if (strcmp(name, "pmgr") == 0) {
+//     if (strncmp(name, "pmgr", bufsize) == 0) {
 //       CFTypeRef pCoreRef = IORegistryEntryCreateCFProperty(obj, CFSTR("voltage-states5-sram"), kCFAllocatorDefault, 0);
 //       CFTypeRef eCoreRef = IORegistryEntryCreateCFProperty(obj, CFSTR("voltage-states1-sram"), kCFAllocatorDefault, 0);
 //
