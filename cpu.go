@@ -202,6 +202,7 @@ func ECoreCache() (int, int, int) {
 		int(C.eCoreL2CacheSize())
 }
 
+// ModelName returns the model name of the CPU.
 func ModelName() string {
 	return C.GoString(C.modelName())
 }

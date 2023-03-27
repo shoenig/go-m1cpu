@@ -11,7 +11,7 @@ jobs:
       - name: GolangCI-Lint
         uses: golangci/golangci-lint-action@v3
         with:
-          version: v1.50
+          version: v1.52.2
           skip-cache: true
   run-tests:
     strategy:
@@ -20,6 +20,7 @@ jobs:
         os:
           - macos-11
           - macos-12
+          - ubuntu-22.04
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v3
