@@ -36,3 +36,18 @@ func PCoreCount() int {
 func ECoreCount() int {
 	panic("m1cpu: not a darwin/arm64 system")
 }
+
+// PCoreCacheSize requires darwin/arm64
+func PCoreCache() (int, int, int) {
+	panic("m1cpu: not a darwin/arm64 system")
+}
+
+// ECoreCacheSize requires darwin/arm64
+func ECoreCache() (int, int, int) {
+	panic("m1cpu: not a darwin/arm64 system")
+}
+
+// ModelName requires darwin/arm64
+func ModelName() string {
+	panic("m1cpu: not a darwin/arm64 system")
+}
