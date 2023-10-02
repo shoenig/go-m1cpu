@@ -18,8 +18,8 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - macos-11
           - macos-12
+          - macos-13-xlarge
           - ubuntu-22.04
     runs-on: ${{matrix.os}}
     steps:
