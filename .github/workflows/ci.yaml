@@ -1,6 +1,14 @@
 name: Run CI Tests
 on: [push]
 jobs:
+  run-copywrite:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-copywrite@v1.1.2
+      - name: verify copyright
+        run: |
+          copywrite headers --plan
   run-lint:
     runs-on: [macos-latest]
     steps:
