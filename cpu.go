@@ -88,9 +88,12 @@ package m1cpu
 //
 //       global_pCoreClock = pCoreClock;
 //       global_eCoreClock = eCoreClock;
-//       return;
+//  	 CFRelease(pCoreRef);
+//  	 CFRelease(eCoreRef);
+//		 break;
 //     }
 //   }
+//   IOObjectRelease(iter);
 // }
 //
 // UInt64 eCoreClock() {
