@@ -213,6 +213,7 @@ func toHz(hz uint64) uint64 {
 	fmt.Sscanf(ModelName(), "Apple M%", &gen)
 
 	// Starting with M4, Apple appears to report clock speed in Khz
+	// See https://github.com/exelban/stats/commit/3e056562b360c937b883725f14f3427d5401b6fe
 	if gen >= 4 {
 		return hz * 1000
 	}
