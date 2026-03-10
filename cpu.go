@@ -30,6 +30,9 @@ package m1cpu
 // char global_brand[32];
 //
 // UInt64 getFrequency(CFTypeRef typeRef) {
+//  if (typeRef == NULL) {
+//    return 0;
+//  }
 //  CFDataRef cfData = typeRef;
 //
 //  CFIndex size = CFDataGetLength(cfData);
@@ -80,8 +83,9 @@ package m1cpu
 //     IORegistryEntryGetName(obj, name);
 //
 //     if (strncmp(name, "pmgr", BUFSIZE) == 0) {
-//       CFTypeRef pCoreRef = IORegistryEntryCreateCFProperty(obj, CFSTR("voltage-states5-sram"), kCFAllocatorDefault, 0);
-//       CFTypeRef eCoreRef = IORegistryEntryCreateCFProperty(obj, CFSTR("voltage-states1-sram"), kCFAllocatorDefault, 0);
+//       CFTypeRef pCoreRef = NULL, eCoreRef = NULL;
+//       pCoreRef = IORegistryEntryCreateCFProperty(obj, CFSTR("voltage-states5-sram"), kCFAllocatorDefault, 0);
+//       eCoreRef = IORegistryEntryCreateCFProperty(obj, CFSTR("voltage-states1-sram"), kCFAllocatorDefault, 0);
 //
 //       long long pCoreClock = getFrequency(pCoreRef);
 //       long long eCoreClock = getFrequency(eCoreRef);
