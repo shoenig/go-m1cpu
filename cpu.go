@@ -73,7 +73,7 @@ package m1cpu
 //
 //   CFMutableDictionaryRef matching = IOServiceMatching("AppleARMIODevice");
 //   io_iterator_t  iter;
-//   IOServiceGetMatchingServices(kIOMainPortDefault, matching, &iter);
+//   IOServiceGetMatchingServices(MACH_PORT_NULL, matching, &iter);
 //
 //   io_object_t obj;
 //   while ((obj = IOIteratorNext(iter))) {
