@@ -92,8 +92,8 @@ package m1cpu
 //
 //       global_pCoreClock = pCoreClock;
 //       global_eCoreClock = eCoreClock;
-//  	 CFRelease(pCoreRef);
-//  	 CFRelease(eCoreRef);
+//  	 if (pCoreRef) CFRelease(pCoreRef);
+//  	 if (eCoreRef) CFRelease(eCoreRef);
 //		 break;
 //     }
 //   }
