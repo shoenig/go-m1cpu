@@ -1,41 +1,28 @@
 name: Run CI Tests
-on: [push]
+on:
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+  push:
+    branches:
+      - 'main'
 jobs:
-  run-copywrite:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-copywrite@v1.1.2
-      - name: verify copyright
-        run: |
-          copywrite headers --plan
-  run-lint:
-    runs-on: [macos-latest]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: hashicorp/setup-golang@v1
-        with:
-          version-file: go.mod
-      - name: GolangCI-Lint
-        uses: golangci/golangci-lint-action@v3
-        with:
-          version: v1.52.2
-          skip-cache: true
   run-tests:
-    strategy:
-      fail-fast: false
-      matrix:
-        os:
-          - macos-11
-          - macos-12
-          - ubuntu-22.04
-    runs-on: ${{matrix.os}}
+    timeout-minutes: 5
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: hashicorp/setup-golang@v1
+      - uses: actions/checkout@v6
+      - uses: extractions/setup-just@53165ef7e734c5c07cb06b3c8e7b647c5aa16db3
+      - uses: actions/setup-go@v6
         with:
-          version-file: go.mod
+          cache: true
+          go-version-file: go.mod
+      - name: Show System
+        run: |
+          uname -a
+          just sysinfo
       - name: Run Go Test
         run: |
-          make vet
-          make test
+          just init tidy lint tests
+
