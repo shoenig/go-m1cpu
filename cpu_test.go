@@ -31,6 +31,11 @@ func Test_ECoreGHz(t *testing.T) {
 	must.Greater(t, 1, ghz)
 }
 
+func Test_FrequencyUnits(t *testing.T) {
+	must.Eq(t, float64(PCoreHz())/1_000_000_000, PCoreGHz())
+	must.Eq(t, float64(ECoreHz())/1_000_000_000, ECoreGHz())
+}
+
 func Test_PCoreCount(t *testing.T) {
 	n := PCoreCount()
 	must.Positive(t, n)
