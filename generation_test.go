@@ -20,6 +20,8 @@ func Test_generation(t *testing.T) {
 		{model: "Apple M4", exp: 4},
 		{model: "Apple M4 Pro", exp: 4},
 		{model: "Apple M5", exp: 5},
+		{model: "Apple M5 Pro", exp: 5},
+		{model: "Apple M5 Max", exp: 5},
 		{model: "Apple M10", exp: 10},
 		{model: "VirtualApple @ 2.50GHz", exp: 0},
 		{model: "", exp: 0},
